@@ -16,7 +16,7 @@ class DB_Managr:
                             user_id INTEGER,
                             eat TEXT NOT NULL,
                             pokypka TEXT ,
-                            tratu ,                                                                        
+                            tratu TEXT ,                                                                        
                             status_id INTEGER,                          
                             FOREIGN KEY(status_id) REFERENCES status(status_id)
                         )''')                                  
@@ -67,7 +67,7 @@ class DB_Managr:
     def get_project_id(self, eat, user_id):
         return self.__select_data(sql='SELECT project_id FROM projects WHERE eat = ? AND user_id = ?', data=(eat, user_id))[0][0]
 
-
+    
 if __name__ == '__main__':
     manager = DB_Managr(DATABASE)
     manager.create_tables() 

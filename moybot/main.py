@@ -32,16 +32,7 @@ attributes_of_projects = {'ваша покупка' : ["Что вы купили
                           "траты на покупку" : ["Ведите сумму", "tratu"],
                           "Статус" : ["Выберите новый статус задачи", "status_id"]}
 
-def info_project(message, user_id, project_name):
-    info = manager.get_project_info(user_id, project_name)[0]
-    skills = manager.get_project_skills(project_name)
-    if not skills:
-        skills = 'Навыки пока не добавлены'
-    bot.send_message(message.chat.id, f"""Project name: {info[0]}
-Description: {info[1]}
-Link: {info[2]}
-Status: {info[3]}
-""")
+
 
 
 
@@ -101,11 +92,9 @@ def get_projects(message):
     else:
         no_projects(message)
 
-@bot.callback_query_handler(func=lambda call: True)
-def callback_query(call):
-    eat = call.data
-    info_project(call.message, call.from_user.id, eat)   
 
+     
+    
 if __name__ == '__main__':
     manager = DB_Managr(DATABASE)
     bot.infinity_polling()
